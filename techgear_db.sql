@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 16, 2025 at 10:54 AM
+-- Generation Time: Dec 17, 2025 at 04:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,6 +44,29 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 (5, 'Desk'),
 (6, 'Chair'),
 (7, 'Other');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `name`, `email`, `phone`, `message`, `created_at`) VALUES
+(1, 'Ujang ', 'ujang@gmail.com', '08123456789', 'halo apakah keyboard razer tersedia 300 stok?', '2025-12-17 03:16:28'),
+(2, 'Yusuf', 'yusuf@gmail.com', '08123456788', 'Assalamualaikum min, untuk pengiriman menuju jakarta ongkirnya berapa?', '2025-12-17 03:47:07');
 
 -- --------------------------------------------------------
 
@@ -100,8 +123,8 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `image`) VALUES
 (34, 7, 'Webcam Full HD 1080p', 490000, '/uploads/products/webcam.webp'),
 (35, 7, 'USB Hub 7 Port RGB', 230000, '/uploads/products/usb.webp'),
 (40, 1, 'Keyboard Freewolf M87', 250000, '/uploads/products/693f860df1f88_freewolf.webp'),
-(41, 7, 'Anggur', 12000, '/uploads/products/6940e1061239c.jpg'),
-(42, 7, 'Github contri hallowen', 10500, '/uploads/products/6940ee54b5ebc_Screenshot 2025-10-31 161226.png');
+(45, 1, 'Mini Keyboard Bleza', 100000, '/uploads/products/694223d36f35c_minikey.jpg'),
+(46, 2, 'Mouse Predator Pro M162', 90000, '/uploads/products/694224503cfce_predator.webp');
 
 -- --------------------------------------------------------
 
@@ -123,7 +146,9 @@ CREATE TABLE `testimonials` (
 INSERT INTO `testimonials` (`id`, `nama`, `pesan`, `created_at`) VALUES
 (2, 'Ucup', 'Sangat bagus dan lengkap', '2025-12-16 15:30:59'),
 (7, 'joko', 'recomended', '2025-12-16 15:37:03'),
-(9, 'Bowo', 'Boleh uga', '2025-12-16 16:05:23');
+(9, 'Bowo', 'Boleh uga', '2025-12-16 16:05:23'),
+(12, 'Sumanto', 'Lumayan lengkap', '2025-12-17 11:09:35'),
+(13, 'Cici', 'Kurang lengkap tapi produknya berkualitas', '2025-12-17 11:34:06');
 
 -- --------------------------------------------------------
 
@@ -158,6 +183,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -187,19 +218,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`

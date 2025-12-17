@@ -26,11 +26,10 @@
             <div class="footer-links">
                 <h4>Site Map</h4>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Product</a></li>
-                    <li><a href="#">Ideas</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Portal</a></li>
+                    <li><a href="/pwd-uas-mfadil/index.php">Home</a></li>
+                    <li><a href="/pwd-uas-mfadil/pages/public/product.php">Product</a></li>
+                    <li><a href="/pwd-uas-mfadil/pages/public/ideas.php">Ideas</a></li>
+                    <li><a href="/pwd-uas-mfadil/pages/public/contact.php">Contact Us</a></li>
                 </ul>
             </div>
 
@@ -55,8 +54,8 @@
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/data.js"></script> -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="/projek-uas/assets/js/data.js"></script>
-<script src="/projek-uas/assets/js/script.js"></script>
+<script src="/pwd-uas-mfadil/assets/js/data.js"></script>
+<script src="/pwd-uas-mfadil/assets/js/script.js"></script>
 
 </body>
 

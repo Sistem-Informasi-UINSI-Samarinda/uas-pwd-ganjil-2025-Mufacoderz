@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechGear Store</title>
-    <link rel="icon" href="/projek-uas/assets/img/icon.png">
+    <link rel="icon" href="/pwd-uas-mfadil/assets/img/icon.png">
 
     <!--link css - cdn -->
-    <link rel="stylesheet" href="/projek-uas/assets/css/global.css">
-    <link rel="stylesheet" href="/projek-uas/assets/css/index.css">
-    <link rel="stylesheet" href="/projek-uas/assets/css/testi.css">
-    <link rel="stylesheet" href="/projek-uas/assets/css/profile.css">
-    <link rel="stylesheet" href="/projek-uas/assets/css/product.css">
-    <link rel="stylesheet" href="/projek-uas/assets/css/ideas.css">
-    <link rel="stylesheet" href="/projek-uas/assets/css/contact.css">
+    <link rel="stylesheet" href="/pwd-uas-mfadil/assets/css/global.css">
+    <link rel="stylesheet" href="/pwd-uas-mfadil/assets/css/index.css">
+    <link rel="stylesheet" href="/pwd-uas-mfadil/assets/css/testi.css">
+    <link rel="stylesheet" href="/pwd-uas-mfadil/assets/css/profile.css">
+    <link rel="stylesheet" href="/pwd-uas-mfadil/assets/css/product.css">
+    <link rel="stylesheet" href="/pwd-uas-mfadil/assets/css/ideas.css">
+    <link rel="stylesheet" href="/pwd-uas-mfadil/assets/css/contact.css">
 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
