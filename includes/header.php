@@ -1,6 +1,4 @@
-<?php
-session_start(); 
-?>
+
 <body>
 <header>
     <nav>
@@ -11,10 +9,10 @@ session_start();
         </h1>
 
         <ul class="nav-list">
-            <li><a href="/pwd-uas-mfadil/index.php">Beranda</a></li>
-            <li><a href="/pwd-uas-mfadil/pages/public/product.php">Produk</a></li>
-            <li><a href="/pwd-uas-mfadil/pages/public/ideas.php">Ide Setup</a></li>
-            <li><a href="/pwd-uas-mfadil/pages/public/contact.php">Kontak</a></li>
+            <li><a href="/projek-uas/index.php">Beranda</a></li>
+            <li><a href="/projek-uas/pages/public/product.php">Produk</a></li>
+            <li><a href="/projek-uas/pages/public/ideas.php">Ide Setup</a></li>
+            <li><a href="/projek-uas/pages/public/contact.php">Kontak</a></li>
         </ul>
 
         <div class="nav-right">
@@ -22,9 +20,9 @@ session_start();
                 <i class="fa-solid fa-bars open"></i>
                 <i class="fa-solid fa-xmark close"></i>
             </div>
-            <div class="cart">
+            <a href="keranjang.php" class="cart">
                 <i class="fa-solid fa-cart-shopping"></i>
-            </div>
+            </a>
         </div>
     </nav>
 </header>

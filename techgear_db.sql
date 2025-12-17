@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 17, 2025 at 04:49 AM
+-- Generation Time: Dec 17, 2025 at 08:24 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,25 +48,54 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE `messages` (
+CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `phone` varchar(20) NOT NULL,
-  `message` text NOT NULL,
+  `customer_name` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `messages`
+-- Dumping data for table `orders`
 --
 
-INSERT INTO `messages` (`id`, `name`, `email`, `phone`, `message`, `created_at`) VALUES
-(1, 'Ujang ', 'ujang@gmail.com', '08123456789', 'halo apakah keyboard razer tersedia 300 stok?', '2025-12-17 03:16:28'),
-(2, 'Yusuf', 'yusuf@gmail.com', '08123456788', 'Assalamualaikum min, untuk pengiriman menuju jakarta ongkirnya berapa?', '2025-12-17 03:47:07');
+INSERT INTO `orders` (`id`, `customer_name`, `phone`, `address`, `total`, `created_at`) VALUES
+(2, 'Muhammad Fadil', '81348726973', 'jln Gerbang dayaku', 8660000, '2025-12-17 06:13:30'),
+(3, 'Fulan', '08153871835', 'Mars no.34', 5350000, '2025-12-17 06:45:41'),
+(4, 'Trump', '083726383', 'USA', 3100000, '2025-12-17 06:57:24'),
+(5, 'Putin', '07264748848', 'Rusia', 490000, '2025-12-17 07:00:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `product_name` varchar(100) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `product_name`, `price`, `qty`) VALUES
+(1, 2, 'Keychron K6 Wireless', 1250000, 1),
+(2, 2, 'Mouse Fantech X9 Thor', 210000, 1),
+(3, 2, 'Secretlab TITAN Evo 2022', 7200000, 1),
+(4, 3, 'Samsung Odyssey G3 24”', 2450000, 1),
+(5, 3, 'Meja Gaming Eureka Z60', 2900000, 1),
+(6, 4, 'Razer BlackShark V2', 1550000, 2),
+(7, 5, 'Webcam Full HD 1080p', 490000, 1);
 
 -- --------------------------------------------------------
 
@@ -121,7 +150,7 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `image`) VALUES
 (32, 7, 'Lampu Meja LED Ambient', 180000, '/uploads/products/lampu.webp'),
 (33, 7, 'Arm Mic Adjustable', 320000, '/uploads/products/arm.webp'),
 (34, 7, 'Webcam Full HD 1080p', 490000, '/uploads/products/webcam.webp'),
-(35, 7, 'USB Hub 7 Port RGB', 230000, '/uploads/products/usb.webp'),
+(35, 7, 'USB Hub 7 Port RGB', 235000, '/uploads/products/usb.webp'),
 (40, 1, 'Keyboard Freewolf M87', 250000, '/uploads/products/693f860df1f88_freewolf.webp'),
 (45, 1, 'Mini Keyboard Bleza', 100000, '/uploads/products/694223d36f35c_minikey.jpg'),
 (46, 2, 'Mouse Predator Pro M162', 90000, '/uploads/products/694224503cfce_predator.webp');
@@ -183,9 +212,15 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `messages`
+-- Indexes for table `orders`
 --
-ALTER TABLE `messages`
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -221,10 +256,16 @@ ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT for table `orders`
 --
-ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `products`
