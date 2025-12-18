@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 17, 2025 at 08:24 AM
+-- Generation Time: Dec 18, 2025 at 10:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,7 +66,6 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `customer_name`, `phone`, `address`, `total`, `created_at`) VALUES
 (2, 'Muhammad Fadil', '81348726973', 'jln Gerbang dayaku', 8660000, '2025-12-17 06:13:30'),
-(3, 'Fulan', '08153871835', 'Mars no.34', 5350000, '2025-12-17 06:45:41'),
 (4, 'Trump', '083726383', 'USA', 3100000, '2025-12-17 06:57:24'),
 (5, 'Putin', '07264748848', 'Rusia', 490000, '2025-12-17 07:00:29');
 
@@ -92,8 +91,6 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_name`, `price`, `qty`) VAL
 (1, 2, 'Keychron K6 Wireless', 1250000, 1),
 (2, 2, 'Mouse Fantech X9 Thor', 210000, 1),
 (3, 2, 'Secretlab TITAN Evo 2022', 7200000, 1),
-(4, 3, 'Samsung Odyssey G3 24”', 2450000, 1),
-(5, 3, 'Meja Gaming Eureka Z60', 2900000, 1),
 (6, 4, 'Razer BlackShark V2', 1550000, 2),
 (7, 5, 'Webcam Full HD 1080p', 490000, 1);
 
@@ -175,7 +172,6 @@ CREATE TABLE `testimonials` (
 INSERT INTO `testimonials` (`id`, `nama`, `pesan`, `created_at`) VALUES
 (2, 'Ucup', 'Sangat bagus dan lengkap', '2025-12-16 15:30:59'),
 (7, 'joko', 'recomended', '2025-12-16 15:37:03'),
-(9, 'Bowo', 'Boleh uga', '2025-12-16 16:05:23'),
 (12, 'Sumanto', 'Lumayan lengkap', '2025-12-17 11:09:35'),
 (13, 'Cici', 'Kurang lengkap tapi produknya berkualitas', '2025-12-17 11:34:06');
 
@@ -259,13 +255,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `products`
