@@ -1,3 +1,5 @@
+
+
 .table-wrapper .action-btn {
     display: inline-flex;
     align-items: center;
@@ -25,23 +27,15 @@
     background: #2ecc71;
     color: #ffffff;
 }
+
 .table-wrapper a.action-btn.arsip {
     background: #e74c3c;
     color: #ffffff;
 }
 
-
-
-
-
-
-
-
-
 .table-wrapper td .action-btn + .action-btn {
     margin-left: 6px;
 }
-
 
 .order-info {
     background: var(--color-secondary);
@@ -52,16 +46,15 @@
     line-height: 1.7;
 }
 
-.cart-action .btn-back{
+.cart-action .btn-back {
     background: #2ecc71;
     text-decoration: none;
     padding: 10px;
     border-radius: 5px;
     color: var(--color-tertiary);
-
 }
 
-.cart-action .btn-back:hover{
+.cart-action .btn-back:hover {
     background: #2ab363;
 }
 
@@ -72,14 +65,13 @@
     font-weight: 600;
 }
 
-
-
 .archive-wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     opacity: 0.85;
 }
+
 
 .archive-card {
     flex: 0 0 calc(30% - 11px);
@@ -92,6 +84,18 @@
 }
 
 
+@media (max-width: 1024px) {
+    .archive-card {
+        flex: 0 0 calc(50% - 8px);
+    }
+}
+
+
+@media (max-width: 640px) {
+    .archive-card {
+        flex: 0 0 100%;
+    }
+}
 
 .archive-header {
     margin-bottom: 10px;
@@ -107,7 +111,6 @@
     color: #6b7280;
     margin-top: 2px;
 }
-
 
 .archive-body {
     font-size: 0.85rem;

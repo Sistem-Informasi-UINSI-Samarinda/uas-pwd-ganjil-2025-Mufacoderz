@@ -1,43 +1,9 @@
 <?php require_once 'checkSession.php'; ?>
-<?php include '../../config/koneksi.php'; ?>
+<?php require_once '../../config/koneksi.php'; ?>
+<?php include 'metaAdmin.php'; ?>
 
 <?php
-
-
-if (isset($_GET['proses'])) {
-    $id = (int)$_GET['proses'];
-    mysqli_query(
-        $conn,
-        "UPDATE orders SET status='processing' WHERE id=$id"
-    );
-    header("Location: manajemenPesanan.php");
-    exit;
-}
-
-if (isset($_GET['selesai'])) {
-    $id = (int)$_GET['selesai'];
-    mysqli_query(
-        $conn,
-        "UPDATE orders SET status='completed' WHERE id=$id"
-    );
-    header("Location: manajemenPesanan.php");
-    exit;
-}
-if (isset($_GET['arsip'])) {
-    $id = (int)$_GET['arsip'];
-    mysqli_query(
-        $conn,
-        "UPDATE orders SET status='archived' WHERE id=$id"
-    );
-    header("Location: manajemenPesanan.php");
-    exit;
-}
-?>
-
-
-<?php
-
-
+// get pesanan
 $pending = mysqli_query(
     $conn,
     "SELECT * FROM orders WHERE status='pending' ORDER BY created_at ASC"
@@ -52,13 +18,12 @@ $completed = mysqli_query(
     $conn,
     "SELECT * FROM orders WHERE status='completed' ORDER BY created_at ASC"
 );
+
 $archived = mysqli_query(
     $conn,
     "SELECT * FROM orders WHERE status='archived' ORDER BY created_at ASC"
 );
 ?>
-
-<?php include 'metaAdmin.php'; ?>
 
 <body>
 
@@ -67,9 +32,7 @@ $archived = mysqli_query(
     <div class="main-content">
         <div class="content-wrapper">
 
-
-
-            <!-- masuk -->
+    <!-- pemding -->
             <h2>Pesanan Masuk</h2>
             <div class="table-wrapper">
                 <table>
@@ -84,8 +47,8 @@ $archived = mysqli_query(
 
                     <?php
                     $no = 1;
-                    if ($pending && mysqli_num_rows($pending) > 0) {
-                        while ($p = mysqli_fetch_assoc($pending)) {
+                    if ($pending && mysqli_num_rows($pending) > 0):
+                        while ($p = mysqli_fetch_assoc($pending)):
                     ?>
                             <tr>
                                 <td><?= $no++; ?></td>
@@ -100,20 +63,18 @@ $archived = mysqli_query(
                                     </a>
 
                                     <a class="action-btn process"
-                                        href="manajemenPesanan.php?proses=<?= $p['id']; ?>"
+                                        href="../../controllers/updatePesanan.php?proses=<?= $p['id']; ?>"
                                         onclick="return confirm('Proses pesanan ini?')">
                                         <i class="fa-solid fa-play"></i> Proses
                                     </a>
                                 </td>
                             </tr>
-                        <?php
-                        }
-                    } else {
-                        ?>
+                        <?php endwhile;
+                    else: ?>
                         <tr>
                             <td colspan="6" class="empty-data">Belum ada pesanan masuk</td>
                         </tr>
-                    <?php } ?>
+                    <?php endif; ?>
                 </table>
             </div>
 
@@ -132,8 +93,8 @@ $archived = mysqli_query(
 
                     <?php
                     $no = 1;
-                    if ($processing && mysqli_num_rows($processing) > 0) {
-                        while ($p = mysqli_fetch_assoc($processing)) {
+                    if ($processing && mysqli_num_rows($processing) > 0):
+                        while ($p = mysqli_fetch_assoc($processing)):
                     ?>
                             <tr>
                                 <td><?= $no++; ?></td>
@@ -148,24 +109,23 @@ $archived = mysqli_query(
                                     </a>
 
                                     <a class="action-btn done"
-                                        href="manajemenPesanan.php?selesai=<?= $p['id']; ?>"
+                                        href="../../controllers/updatePesanan.php?selesai=<?= $p['id']; ?>"
                                         onclick="return confirm('Selesaikan pesanan ini?')">
                                         <i class="fa-solid fa-check"></i> Selesai
                                     </a>
                                 </td>
                             </tr>
-                        <?php
-                        }
-                    } else {
-                        ?>
+                        <?php endwhile;
+                    else: ?>
                         <tr>
                             <td colspan="6" class="empty-data">Belum ada pesanan diproses</td>
                         </tr>
-                    <?php } ?>
+                    <?php endif; ?>
                 </table>
             </div>
 
-            <!-- //done -->
+
+        <!-- done -->
             <h2>Selesai</h2>
             <div class="table-wrapper">
                 <table>
@@ -180,8 +140,8 @@ $archived = mysqli_query(
 
                     <?php
                     $no = 1;
-                    if ($completed && mysqli_num_rows($completed) > 0) {
-                        while ($p = mysqli_fetch_assoc($completed)) {
+                    if ($completed && mysqli_num_rows($completed) > 0):
+                        while ($p = mysqli_fetch_assoc($completed)):
                     ?>
                             <tr>
                                 <td><?= $no++; ?></td>
@@ -194,48 +154,40 @@ $archived = mysqli_query(
                                         href="detailPesanan.php?id=<?= $p['id']; ?>">
                                         <i class="fa-solid fa-circle-info"></i> Detail
                                     </a>
+
                                     <a class="action-btn arsip"
-                                        href="manajemenPesanan.php?arsip=<?= $p['id']; ?>"
+                                        href="../../controllers/updatePesanan.php?arsip=<?= $p['id']; ?>"
                                         onclick="return confirm('Arsipkan pesanan ini?')">
                                         <i class="fa-solid fa-box-archive"></i> Arsipkan
                                     </a>
-
                                 </td>
                             </tr>
-                        <?php
-                        }
-                    } else {
-                        ?>
+                        <?php endwhile;
+                    else: ?>
                         <tr>
                             <td colspan="6" class="empty-data">Belum ada pesanan selesai</td>
                         </tr>
-                    <?php } ?>
+                    <?php endif; ?>
                 </table>
             </div>
 
 
+
+<!-- arsip -->
             <h2 class="archive-title">Riwayat Pesanan</h2>
-
             <div class="archive-wrapper">
-                <?php
-                $arsip = mysqli_query(
-                    $conn,
-                    "SELECT * FROM orders WHERE status='archived' ORDER BY created_at ASC"
-                );
 
-                if ($arsip && mysqli_num_rows($arsip) > 0) {
-                    while ($a = mysqli_fetch_assoc($arsip)) {
+                <?php
+                if ($archived && mysqli_num_rows($archived) > 0):
+                    while ($a = mysqli_fetch_assoc($archived)):
                 ?>
                         <div class="archive-card">
                             <div class="archive-header">
                                 <div>
                                     <div class="archive-name"><?= htmlspecialchars($a['customer_name']); ?></div>
-                                    <div class="archive-date">
-                                        <?= date('d M Y', strtotime($a['created_at'])); ?>
-                                    </div>
+                                    <div class="archive-date"><?= date('d M Y', strtotime($a['created_at'])); ?></div>
                                 </div>
                             </div>
-
 
                             <div class="archive-body">
                                 <div>No HP: <?= htmlspecialchars($a['phone']); ?></div>
@@ -244,19 +196,15 @@ $archived = mysqli_query(
 
                             <div class="archive-badge">ARSIP</div>
                         </div>
-                <?php
-                    }
-                } else {
-                    echo '<p class="archive-empty">Belum ada arsip pesanan</p>';
-                }
-                ?>
-            </div>
+                    <?php endwhile;
+                else: ?>
+                    <p class="archive-empty">Belum ada arsip pesanan</p>
+                <?php endif; ?>
 
+            </div>
 
         </div>
     </div>
-
-
 
     <?php include 'footerAdmin.php'; ?>
 </body>

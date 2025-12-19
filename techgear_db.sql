@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 18, 2025 at 10:14 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Waktu pembuatan: 19 Des 2025 pada 07.12
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Struktur dari tabel `categories`
 --
 
 CREATE TABLE `categories` (
@@ -33,7 +33,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `categories`
+-- Dumping data untuk tabel `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Struktur dari tabel `orders`
 --
 
 CREATE TABLE `orders` (
@@ -57,22 +57,25 @@ CREATE TABLE `orders` (
   `phone` varchar(20) DEFAULT NULL,
   `address` text DEFAULT NULL,
   `total` int(11) DEFAULT NULL,
+  `status` enum('pending','processing','completed','archived') NOT NULL DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `orders`
+-- Dumping data untuk tabel `orders`
 --
 
-INSERT INTO `orders` (`id`, `customer_name`, `phone`, `address`, `total`, `created_at`) VALUES
-(2, 'Muhammad Fadil', '81348726973', 'jln Gerbang dayaku', 8660000, '2025-12-17 06:13:30'),
-(4, 'Trump', '083726383', 'USA', 3100000, '2025-12-17 06:57:24'),
-(5, 'Putin', '07264748848', 'Rusia', 490000, '2025-12-17 07:00:29');
+INSERT INTO `orders` (`id`, `customer_name`, `phone`, `address`, `total`, `status`, `created_at`) VALUES
+(2, 'Muhammad Fadil', '81348726973', 'jln Gerbang dayaku', 8660000, 'archived', '2025-12-17 06:13:30'),
+(4, 'Trump', '083726383', 'USA', 3100000, 'archived', '2025-12-17 06:57:24'),
+(5, 'Putin', '07264748848', 'Rusia', 490000, 'archived', '2025-12-17 07:00:29'),
+(7, 'Ujang', '087474643', 'Mars', 100000, 'archived', '2025-12-19 00:18:14'),
+(8, 'Joko', '097266363', 'Samarinda', 2440000, 'completed', '2025-12-19 05:52:02');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_items`
+-- Struktur dari tabel `order_items`
 --
 
 CREATE TABLE `order_items` (
@@ -84,7 +87,7 @@ CREATE TABLE `order_items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `order_items`
+-- Dumping data untuk tabel `order_items`
 --
 
 INSERT INTO `order_items` (`id`, `order_id`, `product_name`, `price`, `qty`) VALUES
@@ -92,12 +95,15 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_name`, `price`, `qty`) VAL
 (2, 2, 'Mouse Fantech X9 Thor', 210000, 1),
 (3, 2, 'Secretlab TITAN Evo 2022', 7200000, 1),
 (6, 4, 'Razer BlackShark V2', 1550000, 2),
-(7, 5, 'Webcam Full HD 1080p', 490000, 1);
+(7, 5, 'Webcam Full HD 1080p', 490000, 1),
+(10, 7, 'Mini Keyboard Bleza', 100000, 1),
+(11, 8, 'ASUS TUF Gaming VG249Q', 2350000, 1),
+(12, 8, 'Mouse Predator Pro M162', 90000, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Struktur dari tabel `products`
 --
 
 CREATE TABLE `products` (
@@ -109,11 +115,11 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `products`
+-- Dumping data untuk tabel `products`
 --
 
 INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `image`) VALUES
-(1, 1, 'Rexus Legionare MX10', 450000, '/uploads/products/rexus.webp'),
+(1, 1, 'Rexus Legionare MX10', 459000, '/uploads/products/rexus.webp'),
 (2, 1, 'Keychron K6 Wireless', 1250000, '/uploads/products/keychron.webp'),
 (3, 1, 'Logitech G213 Prodigy', 899000, '/uploads/products/keyboard-logitech.webp'),
 (4, 1, 'Keyboard Royal Kludge RK61', 750000, '/uploads/products/royal.webp'),
@@ -155,7 +161,7 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `price`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `testimonials`
+-- Struktur dari tabel `testimonials`
 --
 
 CREATE TABLE `testimonials` (
@@ -166,7 +172,7 @@ CREATE TABLE `testimonials` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `testimonials`
+-- Dumping data untuk tabel `testimonials`
 --
 
 INSERT INTO `testimonials` (`id`, `nama`, `pesan`, `created_at`) VALUES
@@ -178,7 +184,7 @@ INSERT INTO `testimonials` (`id`, `nama`, `pesan`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -191,7 +197,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `nama_lengkap`, `created_at`) VALUES
@@ -202,38 +208,38 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `nama_lengkap`, `cre
 --
 
 --
--- Indexes for table `categories`
+-- Indeks untuk tabel `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `orders`
+-- Indeks untuk tabel `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `order_items`
+-- Indeks untuk tabel `order_items`
 --
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `products`
+-- Indeks untuk tabel `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indexes for table `testimonials`
+-- Indeks untuk tabel `testimonials`
 --
 ALTER TABLE `testimonials`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -242,51 +248,51 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email_2` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT untuk tabel `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT untuk tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `order_items`
+-- AUTO_INCREMENT untuk tabel `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
--- AUTO_INCREMENT for table `testimonials`
+-- AUTO_INCREMENT untuk tabel `testimonials`
 --
 ALTER TABLE `testimonials`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `products`
+-- Ketidakleluasaan untuk tabel `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
